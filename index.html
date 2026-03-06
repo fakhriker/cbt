@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CBT Sejarah XII</title>
+<link rel="stylesheet" href="style.css">
+
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+
+<script src="firebase.js"></script>
+<script src="questions.js"></script>
+</head>
+
+<body>
+
+<div id="login">
+
+<h2>Ujian Sejarah XII</h2>
+
+<input id="nama" placeholder="Nama Siswa">
+
+<button onclick="mulai()">Mulai Ujian</button>
+
+</div>
+
+<div id="quiz" style="display:none">
+
+<h3 id="info"></h3>
+
+<div id="soal"></div>
+
+<button onclick="submitQuiz()">Submit</button>
+
+</div>
+
+<script src="app.js"></script>
+
+</body>
+</html>
