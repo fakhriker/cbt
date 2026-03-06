@@ -1,7 +1,7 @@
-let nama=""
-let id=""
-let answers={}
-let shuffledQuestions=[]
+let nama = ""
+let id = ""
+let answers = {}
+let shuffledQuestions = []
 
 function shuffle(a){
 for(let i=a.length-1;i>0;i--){
@@ -17,9 +17,9 @@ nama=document.getElementById("nama").value
 
 if(!nama) return alert("Isi nama dulu")
 
-id=Date.now()
+id=Date.now().toString()
 
-database.ref("ujian/"+id).set({
+set(ref(database,"ujian/"+id),{
 nama:nama,
 status:"ujian",
 progress:0
@@ -47,10 +47,10 @@ html+=`
 
 <p>${i+1}. ${s.question}</p>
 
-${pilihan.map((p,j)=>`
+${pilihan.map((p)=>`
 
 <label>
-<input type="radio" name="q${i}" value="${p}" onclick="jawab(${i},'${p}')">
+<input type="radio" name="q${i}" value="${p}" onclick="jawab(${i}, this.value)">
 ${p}
 </label><br>
 
@@ -69,7 +69,7 @@ function jawab(i,pilihan){
 
 answers[i]=pilihan
 
-database.ref("ujian/"+id).update({
+update(ref(database,"ujian/"+id),{
 progress:Object.keys(answers).length
 })
 
@@ -92,7 +92,7 @@ benar++
 
 let score=Math.round((benar/shuffledQuestions.length)*100)
 
-database.ref("ujian/"+id).update({
+update(ref(database,"ujian/"+id),{
 status:"selesai",
 score:score
 })
@@ -109,7 +109,7 @@ alert("Terdeteksi keluar aplikasi!")
 
 answers={}
 
-database.ref("ujian/"+id).update({
+update(ref(database,"ujian/"+id),{
 cheat:"Keluar aplikasi"
 })
 
