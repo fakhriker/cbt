@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Monitor Guru</title>
+<link rel="stylesheet" href="style.css">
+
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+
+<script src="firebase.js"></script>
+
+</head>
+
+<body>
+
+<h2>Monitor Ujian</h2>
+
+<table>
+
+<tr>
+<th>Nama</th>
+<th>Status</th>
+<th>Progress</th>
+<th>Cheat</th>
+</tr>
+
+<tbody id="monitor"></tbody>
+
+</table>
+
+<script>
+
+database.ref("ujian").on("value",snap=>{
+
+let data=snap.val()
+let html=""
+
+for(let id in data){
+
+let s=data[id]
+
+html+=`
+<tr>
+<td>${s.nama}</td>
+<td>${s.status}</td>
+<td>${s.progress}/40</td>
+<td>${s.cheat || "-"}</td>
+</tr>
+`
+
+}
+
+document.getElementById("monitor").innerHTML=html
+
+})
+
+</script>
+
+</body>
+</html>
