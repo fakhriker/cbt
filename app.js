@@ -99,3 +99,23 @@ score:score
 alert("Nilai: "+score)
 
 }
+
+document.addEventListener("visibilitychange",()=>{
+
+if(document.hidden){
+
+alert("Terdeteksi keluar aplikasi")
+
+answers={}
+
+database.ref("ujian/"+id).update({
+
+cheat:"Keluar aplikasi"
+
+})
+
+location.reload()
+
+}
+
+})
